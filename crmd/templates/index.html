@@ -1,0 +1,31 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    {% include 'css.html' %}
+    <link rel="shortcut icon" href="{% static "stuco.png" %}">
+    {% block title %}
+    {% endblock %}
+  <body>
+    {% include 'navbar.html' %}
+    <div class="container-fluid" style="min-height: calc(100vh - 105px)">
+      <div class="bg"></div>
+      <div class="bg bg2"></div>
+      <div class="bg bg3"></div>
+      <!-- <div class="cube"></div>
+      <div class="cube"></div>
+      <div class="cube"></div>
+      <div class="cube"></div>
+      <div class="cube"></div>
+      <div class="cube"></div> -->
+    {% block content %}
+    {% endblock %}
+    </div>
+    {% include 'footer.html' %}
+    {% include 'js.html' %}
+  </body>
+</html>

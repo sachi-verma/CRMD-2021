@@ -1,0 +1,46 @@
+{% load static %}
+{% url 'home' as home_url %}
+{% url 'details' as debate_url %}
+{% url 'scores' as scores_url %}
+<nav style="background-color: #330025; height: 65px" class="navbar navbar-expand-lg navbar-dark fixed-top">
+  <a class="navbar-brand text-center nav-h-1" href="https://crcestuco.com/" style="line-height: 2em;" target="_blank">
+    <img src="{% static "stuco.png" %}" width="40" height="40" class="d-inline-block align-top" alt="" loading="lazy">
+    <i class="fa fa-arrow-left"></i>
+  </a>
+  <a class="navbar-brand justify-content-center navbar-brand-centered" href="#" style="line-height: 2em;">
+    <!-- <img src="{% static "stuco.png" %}" width="40" height="40" class="d-inline-block align-top" alt="" loading="lazy"> -->
+    CRMD 2021
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+    <ul style="background-color: #330025" class="navbar-nav nav-justified ml-auto">
+        <li class="nav-item">
+            <a class="nav-link {% if request.path == home_url %}rounded{% endif %}" href="{{home_url}}" >Home</a>
+        </li>
+        {% if request.user.is_authenticated %}
+        {% if request.user.groups.first.name == 'teams' %}
+        <li class="nav-item">
+            <a class="nav-link {% if request.path == debate_url %}rounded{% endif %}" href="{{debate_url}}" >Debate</a>
+        </li>
+        {% endif %}
+        {% if request.user.groups.first.name == 'admins' %}
+        <li class="nav-item">
+            <a class="nav-link {% if request.path == scores_url %}rounded{% endif %}" href="{{scores_url}}">Scores</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link bttn" href="/admin">Admin</a>
+        </li>
+        {% endif %}
+        {% endif %}
+        <li class="nav-item">
+            {% if request.user.is_authenticated %}
+            <a class="nav-link" href="/admin/logout/?next=/">Logout</a>
+            {% else %}
+            <a class="nav-link" href="/admin/login/?next=/">Login</a>
+            {% endif %}
+        </li>
+    </ul>
+  </div>
+</nav>

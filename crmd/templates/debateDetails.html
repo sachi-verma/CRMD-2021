@@ -1,0 +1,82 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %}
+<title>Debate Details | CRMD 2021</title>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="text-center">
+    <!-- <img src="{% static "stuco.png" %}" alt="Logo"> -->
+    <h2 style="margin-top:100px; margin-bottom:50px; color:white; font-family: 'Cookie', cursive; font-size: 65px;">Fr. Conceicao Rodrigues Memorial Debate 2021</h1>
+    <hr>
+    <h3 style="margin-bottom:50px; color:white; font-family: 'Cookie', cursive; font-size: 55px;">Your team code : {{ request.user.username }}</h3>
+    <br>
+  </div>
+  <div style="width: 100%; margin-bottom:50px;" class="card my-2 ml-auto mr-auto card-debate">
+    <div style="background-color: #330025; color: white" class="card-header text-center">
+      Next Debate Details
+    </div>
+    <div style="background-color: #ffccff; height: 3px;"></div>
+    <div class="card-body table-responsive" >
+      <table class="table table-borderless">
+        {% if avail %}
+        <tr>
+          <th>Debate No.:</th>
+          <td>{{ debate.dnum }}</td>
+        </tr>
+        <tr>
+          <th>Motion:</th>
+          <td>{{ debate.motion }}</td>
+        </tr>
+        <tr>
+          <th>Context:</th>
+          <td>{{ debate.context }}</td>
+        </tr>
+        <tr>
+          <th>Side:</th>
+          <td>{{ debate.side }}</td>
+        </tr>
+        <tr>
+          <th>Link:</th>
+          <td><a href={{ debate.link }} target="_blank" style="color: #f9e6ff;">{{ debate.link }}</a></td>
+        </tr>
+        <tr>
+          <th>Side:</th>
+          <td>{{ debate.meetingid }}</td>
+        </tr>
+        <tr>
+          <th>Side:</th>
+          <td>{{ debate.passcode }}</td>
+        </tr>
+
+
+        <!-- <thead>
+          <tr>
+            <th scope="col">Debate No.</th>
+            <th scope="col">Motion</th>
+            <th scope="col">Side</th>
+            <th scope="col">Link</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">{{ debate.dnum }}</th>
+            <td>{{ debate.motion }}</td>
+            <td>{{ debate.side }}</td>
+            <td>{{ debate.link }}</td>
+          </tr>
+        </tbody> -->
+        {% else %}
+        <thead>
+          <tr>
+            <th scope="col">{{ debate }}</th>
+          </tr>
+        </thead>
+        {% endif %}
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}
